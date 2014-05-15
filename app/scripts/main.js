@@ -14,7 +14,7 @@ var setListPro= {
 	},
 
 	initEvents: function() {
-		$(".songForm").on("submit", this.getAjax);
+		$(".songForm").on("submit", this.getAjax, this.inputSetList);
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -25,12 +25,20 @@ var setListPro= {
 	inputSetList: function(e) {
     e.preventDefault();
 
+<<<<<<< Updated upstream
 
      $.ajax({
               url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
               type:'POST',
               data: Object,
               dataType: 'jsonp',
+=======
+     $.ajax({
+              url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
+              type:'POST',
+              data: 'data',
+              dataType: 'json',
+>>>>>>> Stashed changes
               error: function(data){
                 alert('U FAIL');
               },
@@ -67,14 +75,17 @@ var setListPro= {
 		url: fullURL,
 		type: "GET",
 		dataType: "json",
-		data: {query: songTitle},
+		data: "data",
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 
+<<<<<<< Updated upstream
 			setListPro.getAjax();
+=======
+>>>>>>> Stashed changes
 			
 		}
-		});
+		}); //end ajax
 
 	},
 
