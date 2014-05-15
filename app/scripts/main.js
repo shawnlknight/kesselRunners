@@ -12,18 +12,49 @@ var setListPro= {
 	initStyling: function() {
 	},
 	initEvents: function() {
-		setListPro.addSong();
+		$(".songForm").on("submit", this.inputSetList);
+		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
 		// pull up song tabs
 		//bring up modal
 	},
 
+	inputSetList: function(e) {
+    e.preventDefault();
+
+      var newSetList = {
+        item: $(".chordsItem").val(),
+      };
+
+      console.log(newSetList);
+
+     $.ajax({
+              url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
+              type:'POST',
+              data: newSetList,
+              dataType: 'jsonp',
+              error: function(data){
+                // alert('U FAIL');
+              },
+              success: function(data) {
+                // alert('YA SUCCESS!');
+
+                    setListPro.getAjax(data);
+                    
+                   }
+               }); //end ajax
+
+  },
+
 	getAjax : function(){
 		var API_KEY = '8b002700ba331e00ee2408de1d1a3da5c43382d7';
-		var songTitle=setlist1.title
-		var artist
-		var fullURL = 'http://api.guitarparty.com/v2/songs/?'+
+	
+
+		var songTitle = $('.songTitleInput').val();
+		var artist = $('.artistInput').val();
+
+		var fullURL = 'http://api.guitarparty.com/v2/songs/?query='+
 		'/'+
 		songTitle+
 		'/'+
@@ -35,7 +66,7 @@ var setListPro= {
 		}, 
 		url: fullURL,
 		type: "GET",
-		datatype: "json",
+		datatype: "jsonp",
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 		}
