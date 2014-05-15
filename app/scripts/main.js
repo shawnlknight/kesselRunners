@@ -25,27 +25,18 @@ var setListPro= {
 	inputSetList: function(e) {
     e.preventDefault();
 
-<<<<<<< Updated upstream
-
-     $.ajax({
-              url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
-              type:'POST',
-              data: Object,
-              dataType: 'jsonp',
-=======
      $.ajax({
               url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
               type:'POST',
               data: 'data',
               dataType: 'json',
->>>>>>> Stashed changes
               error: function(data){
                 alert('U FAIL');
               },
               success: function(data) {
                 alert('YA SUCCESS!');
 
-                    setListPro.getAjax(Object);
+                    setListPro.getAjax(data);
                     
                    }
                }); //end ajax
@@ -79,10 +70,8 @@ var setListPro= {
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 
-<<<<<<< Updated upstream
 			setListPro.getAjax();
-=======
->>>>>>> Stashed changes
+
 			
 		}
 		}); //end ajax
