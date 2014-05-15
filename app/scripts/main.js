@@ -25,16 +25,11 @@ var setListPro= {
 	inputSetList: function(e) {
     e.preventDefault();
 
-      var newSetList = {
-        item: $(".playlistsItem").val(),
-      };
-
-      console.log(newSetList);
 
      $.ajax({
               url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
               type:'POST',
-              data: newSetList,
+              data: Object,
               dataType: 'jsonp',
               error: function(data){
                 alert('U FAIL');
@@ -42,7 +37,7 @@ var setListPro= {
               success: function(data) {
                 alert('YA SUCCESS!');
 
-                    setListPro.getAjax(data);
+                    setListPro.getAjax(Object);
                     
                    }
                }); //end ajax
@@ -76,7 +71,8 @@ var setListPro= {
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 
-			$(".chordsItem").html(html);
+			setListPro.getAjax();
+			
 		}
 		});
 
