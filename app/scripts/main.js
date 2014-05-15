@@ -53,7 +53,7 @@ var setListPro= {
 		e.preventDefault();
 		var API_KEY = '8b002700ba331e00ee2408de1d1a3da5c43382d7';
 	
-
+		var html ='';
 		var songTitle = $('.songTitleInput').val();
 		var artist = $('.artistInput').val();
 
@@ -76,7 +76,7 @@ var setListPro= {
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 
-			// $(".chordsItem").html(html);
+			$(".chordsItem").html(html);
 		}
 		});
 
