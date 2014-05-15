@@ -10,7 +10,7 @@ var JamMasterP= {
 		this.initEvents();
 	},
 
-	initiStyling: function() {
+	initStyling: function() {
 	},
 
 	initEvents: function() {
