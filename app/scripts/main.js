@@ -6,19 +6,50 @@ setListPro.init();
 
 var setListPro= {
 	init: function() {
-		this.initStyling();
-		this.initEvents();
+		setListPro.initEvents();
 	},
 
 	initStyling: function() {
 	},
-
 	initEvents: function() {
 		setListPro.addSong();
 		// create playlist event
 		// add song to playlist
 		// pull up song tabs
 		//bring up modal
+	},
+
+	getAjax : function(){
+		var API_KEY = '8b002700ba331e00ee2408de1d1a3da5c43382d7';
+		var songTitle=setlist1.title
+		var artist
+		var fullURL = 'http://api.guitarparty.com/v2/songs/?'+
+		'/'+
+		songTitle+
+		'/'+
+		artist
+
+		$.ajax({
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader('Guitarparty-Api-Key', API_KEY);
+		}, 
+		url: fullURL,
+		type: "GET",
+		datatype: "json",
+		success: function(data, dataType, jqXHR){
+			console.log(data);
+		}
+		});
+
+	},
+
+	rendertmpl : function(){
+		
+	},
+
+	appendTab : function(){
+		//getAjax
+		//rendertmpl....html
 	},
 	genSong : function(){
 		var artist=$(".artistInput").val();

@@ -10,7 +10,7 @@ var setlists = [
 		songs: []
 	},
 	{
-		name: "setlist3"
+		name: "setlist3",
 		songs: []
 	}
 	
