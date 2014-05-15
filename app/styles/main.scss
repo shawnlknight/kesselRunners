@@ -4,6 +4,24 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import '../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss';
 // endbower
 
+
+.container {
+    width: 1080px;
+    border: 1px solid red;
+
+    .playlists{
+        border: 1px solid red;
+    }
+    .songs{
+        border: 1px solid red;
+    }
+    .chords{
+        border: 1px solid red;
+    }
+}
+
+
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
