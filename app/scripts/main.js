@@ -47,7 +47,7 @@ var setListPro= {
                    }
                }); //end ajax
 
-  },
+	},
 
 	getAjax : function(e){
 		e.preventDefault();
@@ -82,8 +82,27 @@ var setListPro= {
 
 	},
 
-	rendertmpl : function(){
-		
+	render: function($el, template, data) {
+	var tmpl = _.template(template, data);
+
+	$el.html(tmpl);
+	},
+
+	renderSong : function(){
+		$.ajax({
+			url: 'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
+			type: "GET",
+			data: "json",
+			error: function(jqXHR, status, error) {
+				console.log("render song failed");
+			},
+			success: function(data, dataType, jqXHR) {
+
+				var obj = window.obj = data;
+				setListPro.render($(".playlistsItem"), Templates.songs, obj);
+
+			}
+		});
 	},
 
 	appendTab : function(){
