@@ -5,14 +5,16 @@ setListPro.init();
 });
 
 var setListPro= {
+
 	init: function() {
-		setListPro.initEvents();
+		this.initEvents();
 	},
 
 	initStyling: function() {
 	},
+
 	initEvents: function() {
-		$(".songForm").on("submit", this.inputSetList);
+		$(".songForm").on("submit", this.getAjax);
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -24,7 +26,7 @@ var setListPro= {
     e.preventDefault();
 
       var newSetList = {
-        item: $(".chordsItem").val(),
+        item: $(".playlistsItem").val(),
       };
 
       console.log(newSetList);
@@ -35,10 +37,10 @@ var setListPro= {
               data: newSetList,
               dataType: 'jsonp',
               error: function(data){
-                // alert('U FAIL');
+                alert('U FAIL');
               },
               success: function(data) {
-                // alert('YA SUCCESS!');
+                alert('YA SUCCESS!');
 
                     setListPro.getAjax(data);
                     
@@ -47,28 +49,34 @@ var setListPro= {
 
   },
 
-	getAjax : function(){
+	getAjax : function(e){
+		e.preventDefault();
 		var API_KEY = '8b002700ba331e00ee2408de1d1a3da5c43382d7';
 	
 
 		var songTitle = $('.songTitleInput').val();
 		var artist = $('.artistInput').val();
 
-		var fullURL = 'http://api.guitarparty.com/v2/songs/?query='+
-		'/'+
+		var fullURL = "http://api.guitarparty.com/v2/songs/?query="+
 		songTitle+
-		'/'+
 		artist
 
-		$.ajax({
-	    beforeSend: function(xhr) {
+		$.ajaxSetup({
+			beforeSend: function(xhr) {
 	        xhr.setRequestHeader('Guitarparty-Api-Key', API_KEY);
-		}, 
+		}
+		})
+
+		$.ajax({
+
 		url: fullURL,
 		type: "GET",
-		datatype: "jsonp",
+		dataType: "json",
+		data: {query: songTitle},
 		success: function(data, dataType, jqXHR){
 			console.log(data);
+
+			// $(".chordsItem").html(html);
 		}
 		});
 
