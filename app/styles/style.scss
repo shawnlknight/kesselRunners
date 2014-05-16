@@ -6,3 +6,24 @@ body{
 	width: 100%;
 	margin: 0px;
 }
+
+.search {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.container {
+    border: 1px solid red;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+
+
+    .setlists{
+        border: 1px solid red;
+    }
+    .songs{
+        border: 1px solid red;
+    }
+    .chords{
+        border: 1px solid red;
+    }
+}
