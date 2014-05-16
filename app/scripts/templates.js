@@ -1,9 +1,14 @@
-// Templates = {};
+Templates = {};
 
-// Templates.songs = [
-// 	"<% _.each(obj, function(obj, index, list) { %>",
+Templates.songs = [
+	"<% _.each(obj, function(obj, index, list) { %>",
 
-	
+	"<div data-objId=\"<%= obj._id %>\">",
+	"<h4 class=\"data-index=\"<%= index %>\"><%= obj.name %></h4>",
+	"<h4 class=\"data-index=\"<%= index %>\"><%= obj.title %></h4>",
+	"<span class=\"glyphicon glyphicon-trash deleteSong\"></span>",
+	"</div>",
+	"<% }); %>"
 
 
-// ].join("\n");
+].join("\n");
