@@ -90,6 +90,8 @@ var setListPro= {
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 
+			if (data.objects.length === 1){
+			
 			var name = data.objects[0].authors[0].name;
 			var title = data.objects[0].title;
 			var chords = data.objects[0].body_chords_html;
@@ -103,12 +105,37 @@ var setListPro= {
 				var objects;
 			setListPro.renderSong();
 
-			$(".authorName").append(data.objects[0].authors[0].name);
-			$(".titleName").append(data.objects[0].title);
-			$(".chordsItem").append(data.objects[0].body_chords_html);
+				$(".authorName").append(data.objects[0].authors[0].name);
+				$(".titleName").append(data.objects[0].title);
+				$(".chordsItem").append(data.objects[0].body_chords_html);
+
+			} else 
+				
+				alert("We don't have that ish yo, stop asking!");
+			 
+			
+			}
+
+			//var name = data.objects[0].authors[0].name;
+			//var title = data.objects[0].title;
+			//var chords = data.objects[0].body_chords_html;
+			//var someObj = {
+			//		name: name,
+			//		title: title,
+			//		chords: chords
+			//};
+
+			//setListPro.inputSetList(someObj);
+			//	var objects;
+			//setListPro.renderSong();
+
+			//$(".authorName").append(data.objects[0].authors[0].name);
+			//$(".titleName").append(data.objects[0].title);
+			//$(".chordsItem").append(data.objects[0].body_chords_html);
 
 
-		}
+		
+
 		});
 
 	},
