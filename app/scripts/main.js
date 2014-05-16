@@ -9,10 +9,12 @@ setListPro.init();
 var setListPro= {
 
 	init: function() {
+		this.initStyling();
 		this.initEvents();
 	},
 
 	initStyling: function() {
+		this.renderSong();
 	},
 
 	initEvents: function() {
@@ -94,10 +96,13 @@ var setListPro= {
 
 			setListPro.inputSetList(someObj);
 				var objects;
+			setListPro.renderSong();
 
 			$(".authorName").append(data.objects[0].authors[0].name);
 			$(".titleName").append(data.objects[0].title);
 			$(".chordsItem").append(data.objects[0].body_chords_html);
+
+
 		}
 		});
 
