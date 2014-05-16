@@ -20,6 +20,9 @@ var setListPro= {
 	initEvents: function() {
 		$(".songForm").on("submit", this.getAjax);
 		$(".songsItem").on("click", this.inputSetList);
+
+		// Delete song
+		$(".playlistsItem").on("click", ".deleteSong", this.removeSong);
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -153,8 +156,22 @@ var setListPro= {
 
 	
 	removeSong: function() {
+		var $thisSong = $(this).closest("article");
+	    var objId = $thisSong.data("objid");
 
+		$.ajax({
+			url: "http://tiy-fee-rest.herokuapp.com/collections/kesselrunners/" + objId,
+			type: "DELETE",
+			error: function(jqXHR, status, error) {
+				console.log("remove song failed");
+			},
+			success: function(data) {
+				console.log("song removed");
+				setListPro.renderSong();
+			}
+		});
 	},
+
 
 	showTabs: function() {
 
