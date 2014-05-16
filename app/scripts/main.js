@@ -17,6 +17,7 @@ var setListPro= {
 
 	initEvents: function() {
 		$(".songForm").on("submit", this.getAjax);
+		$(".songsItem").on("click", this.append);
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -24,7 +25,7 @@ var setListPro= {
 		//bring up modal
 	},
 
-	inputSetList: function(data) {
+	// inputSetList: function(data) {
     
 
       // var newSetList = {
@@ -39,38 +40,40 @@ var setListPro= {
 		// }
 		// })
 
-     $.ajax({
-              url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
-              type:'POST',
-              data: 'json.stringify',
-              dataType: 'json',
-              error: function(data){
-                alert('U FAIL');
-              },
-              success: function(data) {
-                alert('YA SUCCESS!');
-                   }
-               }); //end ajax
+  //    $.ajax({
+  //             url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
+  //             type:'POST',
+  //             data: 'json.stringify',
+  //             dataType: 'json',
+  //             error: function(data){
+  //               alert('U FAIL');
+  //             },
+  //             success: function(data) {
+  //               alert('YA SUCCESS!');
+  //                  }
+  //              }); //end ajax
 
-  },
+  // },
+
 
 		getAjax : function(e){
 		e.preventDefault();
-		var API_KEY = '8b002700ba331e00ee2408de1d1a3da5c43382d7';
-
-
-		var songTitle = $('.songTitleInput').val();
-		var artist = $('.artistInput').val();
-
-		var fullURL = "http://api.guitarparty.com/v2/songs/?query="+
-		songTitle+
-		artist
 
 		$.ajaxSetup({
 			beforeSend: function(xhr) {
 	        xhr.setRequestHeader('Guitarparty-Api-Key', API_KEY);
 		}
 		})
+
+		var API_KEY = '8b002700ba331e00ee2408de1d1a3da5c43382d7';
+
+		var html = '';
+		var songTitle = $('.songTitleInput').val();
+		var artist = $('.artistInput').val();
+
+		var fullURL = "http://api.guitarparty.com/v2/songs/?query="+
+		songTitle+
+		artist
 
 		$.ajax({
 
@@ -81,7 +84,9 @@ var setListPro= {
 		success: function(data, dataType, jqXHR){
 			console.log(data);
 
-			setListPro.inputSetList(data);
+			 // html += '<div class="songsItem"><li'+fullURL+'>''</li><li'+songTitle+'>''</li><li'+artist+'>''</li></div>\n';
+
+			$(".songsItem").append(Object);
 		}
 		});
 
