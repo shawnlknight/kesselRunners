@@ -16,8 +16,8 @@ var setListPro= {
 	},
 
 	initEvents: function() {
-		$(".songForm").on("submit", this.getAjax);
-		$(".songsItem").on("click", this.append);
+		$(".songForm").on("submit", this.getAjax, this.newSetList);
+		// $(".songsItem").on("click", this.append);
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -71,9 +71,7 @@ var setListPro= {
 		var songTitle = $('.songTitleInput').val();
 		var artist = $('.artistInput').val();
 
-		var fullURL = "http://api.guitarparty.com/v2/songs/?query="+
-		songTitle+
-		artist
+		var fullURL = "http://api.guitarparty.com/v2/songs/";
 
 		$.ajax({
 
@@ -82,11 +80,15 @@ var setListPro= {
 		dataType: "json",
 		data: {query: songTitle},
 		success: function(data, dataType, jqXHR){
-			console.log(data);
-
+			console.log(data.objects[0].authors[0].name);
+				var objects;
 			 // html += '<div class="songsItem"><li'+fullURL+'>''</li><li'+songTitle+'>''</li><li'+artist+'>''</li></div>\n';
 
-			$(".songsItem").append(Object);
+			 	for(var i=0; i<data.objects.length; i++) {
+			 		objects += 
+			 	}
+			 	setListPro.addToServer(objects);//post 
+			$(".songsItem").text(data.objects[0].authors[0].name);
 		}
 		});
 
