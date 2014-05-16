@@ -13,3 +13,15 @@ Templates.songs = [
 
 
 ].join("\n");
+
+Templates.showChord = [
+	"<% _.each(obj, function(obj, index, list) { %>",
+	
+	"<div class=\"data-index=\"<%= index %>\"><%= obj.chords %>",
+	"<% }); %>"
+
+
+
+
+
+].join("\n");

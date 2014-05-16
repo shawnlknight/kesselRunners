@@ -23,6 +23,8 @@ var setListPro= {
 
 		// Delete song
 		$(".playlistsItem").on("click", ".deleteSong", this.removeSong);
+
+		$(".playlistsItem").on("click", ".chords", this.renderChords)
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -52,7 +54,7 @@ var setListPro= {
                 alert('U FAIL');
               },
               success: function(data) {
-                alert('YA SUCCESS!');
+                console.log('YA SUCCESS!');
 
    //          $(".authorName").append(data.objects[0].authors[0].name);
 			// $(".titleName").append(data.objects[0].title);
@@ -129,6 +131,23 @@ var setListPro= {
 
 				var obj = window.obj = data;
 				setListPro.render($(".playlistsItem"), Templates.songs, obj);
+
+			}
+		});
+	},
+
+	renderChords : function(){
+		$.ajax({
+			url: 'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
+			type: "GET",
+			data: "json",
+			error: function(jqXHR, status, error) {
+				console.log("render song failed");
+			},
+			success: function(data, dataType, jqXHR) {
+
+				var obj = window.obj = data;
+				setListPro.render($(".chordsItem"), Templates.showChord, obj);
 
 			}
 		});
