@@ -15,30 +15,19 @@ var setListPro= {
 
 	initStyling: function() {
 		this.renderSong();
+		this.renderChords();
 	},
 
 	initEvents: function() {
 		$(".songForm").on("submit", this.getAjax);
-		$(".songsItem").on("click", this.inputSetList);
 
 		// Delete song
 		$(".playlistsItem").on("click", ".deleteSong", this.removeSong);
 
-		$(".playlistsItem").on("click", ".chords", this.renderChords)
-		// setListPro.addSong();
-		// create playlist event
-		// add song to playlist
-		// pull up song tabs
-		//bring up modal
 	},
 
 	inputSetList: function(data) {
     
-
-      // var newSetList = {
-      //   item: $(".playlistsItem").val(),
-      // };
-
       $.ajaxSetup({
 			beforeSend: function(xhr) {
 				//had to do this to remove the Guitarparty-Api-Key otherwise post failed
@@ -56,8 +45,6 @@ var setListPro= {
               success: function(data) {
                 console.log('YA SUCCESS!');
 
-   //          $(".authorName").append(data.objects[0].authors[0].name);
-			// $(".titleName").append(data.objects[0].title);
                    }
                }); //end ajax
 
@@ -203,10 +190,10 @@ var setListPro= {
 	
 	removeSong: function() {
 		var $thisSong = $(this).closest("article");
-	    var objId = $thisSong.data("objid");
+	    var itemId = $thisSong.data("itemid");
 
 		$.ajax({
-			url: "http://tiy-fee-rest.herokuapp.com/collections/kesselrunners/" + objId,
+			url: "http://tiy-fee-rest.herokuapp.com/collections/kesselrunners/" + itemId,
 			type: "DELETE",
 			error: function(jqXHR, status, error) {
 				console.log("remove song failed");
@@ -214,6 +201,7 @@ var setListPro= {
 			success: function(data) {
 				console.log("song removed");
 				setListPro.renderSong();
+				setListPro.renderChords();
 			}
 		});
 	},

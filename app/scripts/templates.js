@@ -1,12 +1,11 @@
 Templates = {};
 
 Templates.songs = [
-	"<% _.each(obj, function(obj, index, list) { %>",
+	"<% _.each(obj, function(item, index, list) { %>",
 
-	"<article data-objId=\"<%= obj._id %>\">",
-	"<h4 class=\"data-index=\"<%= index %>\"><%= obj.name %></h4>",
-	"<h4 class=\"data-index=\"<%= index %>\"><%= obj.title %></h4>",
-	"<button class=\"btn btn-default chords\">Show Chords</button>",
+	"<article class=\"setListTemplate\" data-itemId=\"<%= item._id %>\">",
+	"<h4\"data-index=\"<%= index %>\"><h4>Artist: </4><%= item.name %></h4>",
+	"<h4\"data-index=\"<%= index %>\"><h4>Song: </4><%= item.title %></h4>",
 	"<span class=\"glyphicon glyphicon-trash deleteSong\"></span>",
 	"</article>",
 	"<% }); %>"
@@ -15,9 +14,10 @@ Templates.songs = [
 ].join("\n");
 
 Templates.showChord = [
-	"<% _.each(obj, function(obj, index, list) { %>",
-	
-	"<div class=\"data-index=\"<%= index %>\"><%= obj.chords %>",
+	"<% _.each(obj, function(item, index, list) { %>",
+
+	"<h4 class=\"thisTitle\"><%= item.title %></h4>",
+	"<div class=\"songChords\" data-index=\"<%= index %>\"><%= item.chords %></div>",
 	"<% }); %>"
 
 
