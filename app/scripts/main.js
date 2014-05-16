@@ -16,8 +16,8 @@ var setListPro= {
 	},
 
 	initEvents: function() {
-		$(".songForm").on("submit", this.getAjax, this.newSetList);
-		// $(".songsItem").on("click", this.append);
+		$(".songForm").on("submit", this.getAjax);
+		$(".songsItem").on("click", this.inputSetList);
 		// setListPro.addSong();
 		// create playlist event
 		// add song to playlist
@@ -25,35 +25,36 @@ var setListPro= {
 		//bring up modal
 	},
 
-	// inputSetList: function(data) {
+	inputSetList: function(data) {
     
 
       // var newSetList = {
       //   item: $(".playlistsItem").val(),
       // };
 
-      // console.log(newSetList);
+      $.ajaxSetup({
+			beforeSend: function(xhr) {
+				//had to do this to remove the Guitarparty-Api-Key otherwise post failed
+		}
+		})
 
-  //     $.ajaxSetup({
-		// 	beforeSend: function(xhr) {
-		// 		//had to do this to remove the Guitarparty-Api-Key otherwise post failed
-		// }
-		// })
+     $.ajax({
+              url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
+              type:'POST',
+              data: data,
+              dataType: 'json',
+              error: function(data){
+                alert('U FAIL');
+              },
+              success: function(data) {
+                alert('YA SUCCESS!');
 
-  //    $.ajax({
-  //             url:'http://tiy-fee-rest.herokuapp.com/collections/kesselrunners',
-  //             type:'POST',
-  //             data: 'json.stringify',
-  //             dataType: 'json',
-  //             error: function(data){
-  //               alert('U FAIL');
-  //             },
-  //             success: function(data) {
-  //               alert('YA SUCCESS!');
-  //                  }
-  //              }); //end ajax
+   //          $(".authorName").append(data.objects[0].authors[0].name);
+			// $(".titleName").append(data.objects[0].title);
+                   }
+               }); //end ajax
 
-  // },
+  },
 
 
 		getAjax : function(e){
@@ -81,15 +82,21 @@ var setListPro= {
 		data: {query: songTitle},
 		success: function(data, dataType, jqXHR){
 			console.log(data);
-				var objects;
-			 // html += '<div class="songsItem"><li'+fullURL+'>''</li><li'+songTitle+'>''</li><li'+artist+'>''</li></div>\n';
 
-			 	// for(var i=0; i<data.objects.length; i++) {
-			 	// 	objects += 
-			 	// }
-			 	// setListPro.addToServer(objects);//post 
-			$(".authorName").text(data.objects[0].authors[0].name);
-			$(".titleName").text(data.objects[0].title);
+			var name = data.objects[0].authors[0].name;
+			var title = data.objects[0].title;
+			var chords = data.objects[0].body_chords_html;
+			var someObj = {
+					name: name,
+					title: title,
+					chords: chords
+			};
+
+			setListPro.inputSetList(someObj);
+				var objects;
+
+			$(".authorName").append(data.objects[0].authors[0].name);
+			$(".titleName").append(data.objects[0].title);
 			$(".chordsItem").append(data.objects[0].body_chords_html);
 		}
 		});
