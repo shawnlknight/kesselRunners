@@ -80,15 +80,17 @@ var setListPro= {
 		dataType: "json",
 		data: {query: songTitle},
 		success: function(data, dataType, jqXHR){
-			console.log(data.objects[0].authors[0].name);
+			console.log(data);
 				var objects;
 			 // html += '<div class="songsItem"><li'+fullURL+'>''</li><li'+songTitle+'>''</li><li'+artist+'>''</li></div>\n';
 
-			 	for(var i=0; i<data.objects.length; i++) {
-			 		objects += 
-			 	}
-			 	setListPro.addToServer(objects);//post 
-			$(".songsItem").text(data.objects[0].authors[0].name);
+			 	// for(var i=0; i<data.objects.length; i++) {
+			 	// 	objects += 
+			 	// }
+			 	// setListPro.addToServer(objects);//post 
+			$(".authorName").text(data.objects[0].authors[0].name);
+			$(".titleName").text(data.objects[0].title);
+			$(".chordsItem").append(data.objects[0].body_chords_html);
 		}
 		});
 
