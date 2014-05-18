@@ -1,6 +1,12 @@
 //working
 
 $(document).ready(function() {
+	$('.songs').hide();
+
+$('.chords').on('click', function() {
+    $('.songs').toggle()
+  }
+);
 
 setListPro.init();
 
@@ -102,27 +108,6 @@ var setListPro= {
 			 
 			
 			}
-
-			//var name = data.objects[0].authors[0].name;
-			//var title = data.objects[0].title;
-			//var chords = data.objects[0].body_chords_html;
-			//var someObj = {
-			//		name: name,
-			//		title: title,
-			//		chords: chords
-			//};
-
-			//setListPro.inputSetList(someObj);
-			//	var objects;
-			//setListPro.renderSong();
-
-			//$(".authorName").append(data.objects[0].authors[0].name);
-			//$(".titleName").append(data.objects[0].title);
-			//$(".chordsItem").append(data.objects[0].body_chords_html);
-
-
-		
-
 		});
 
 	},
