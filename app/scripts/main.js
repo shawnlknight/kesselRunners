@@ -1,7 +1,6 @@
 //working
 
 $(document).ready(function() {
-	$('.songs').hide();
 
 $('.chords').on('click', function() {
     $('.songs').toggle()
