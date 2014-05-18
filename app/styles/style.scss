@@ -30,7 +30,7 @@ body{
 
 .songChords {
 	border-bottom: 1px solid black;
-	padding-top: 30px;
+	padding-top: 15px;
 	padding-bottom: 20px;
 }
 
@@ -42,4 +42,9 @@ body{
 	border-bottom: 1px solid black;
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+
+.chordsItem {
+	text-align: center;
+	font-size: 150%;
 }
