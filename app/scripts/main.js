@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-$('.chords').on('click', function() {
+$('.expand').on('click', function() {
     $('.songs').toggle()
   }
 );
